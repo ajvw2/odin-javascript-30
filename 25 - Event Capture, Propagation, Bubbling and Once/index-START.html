@@ -43,7 +43,24 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
 
+  function logText(e) {
+    console.log(this.classList.value);
+    // e.stopPropagation(); // Stop bubbling
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false, // Changes 'bubbling order', default is false
+    once: true // Will run once but never again
+  }));
+
+  button.addEventListener('click', () => {
+    console.log('Click!!!');
+  }, {
+    once: true // Can only click button once, e.g. for store checkouts
+  });
 </script>
 </body>
 </html>
